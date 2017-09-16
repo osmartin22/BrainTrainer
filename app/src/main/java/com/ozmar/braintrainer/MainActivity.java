@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+//          Test
 //        addition("+", a, b);
 
         sumTextView.setText(Integer.toString(a) + " + " + Integer.toString(b));
