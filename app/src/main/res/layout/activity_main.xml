@@ -29,6 +29,18 @@
         android:visibility="invisible">
 
         <Button
+            android:id="@+id/optionsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="17dp"
+            android:layout_marginStart="11dp"
+            android:onClick="options"
+            android:text="Options"
+            android:visibility="invisible" />
+
+        <Button
             android:id="@+id/playAgainButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -1,9 +1,12 @@
 package com.ozmar.braintrainer;
 
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -16,14 +19,22 @@ import static java.lang.StrictMath.round;
 
 public class MainActivity extends AppCompatActivity {
 
+    // TODO:
+    // Add menu option that allows user to choose various settings
+        // Like just addition or addition and subtraction
+    //
+    // Show high score at the end fro each of the possibilities
+        // Maybe just for the major ones, all options is a lot
+
     Button startButton;
     TextView  pointsTextView, sumTextView, resultTextView, timerTextView;
-    Button button0, button1, button2, button3, playAgainButton;
+    Button button0, button1, button2, button3, playAgainButton, optionsButton;
     RelativeLayout gameRelativeLayout;
 
     ArrayList<Integer> answers = new ArrayList<>();
     ArrayList<Double> answersDouble = new ArrayList<>();
 
+    int seconds = 7100;
     int locationOfCorrectAnswer;
     int score = 0;
     int numberOfQuestions = 0;
@@ -32,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     // Timer
     // OnFinish: Shows playAgainButton and score, sets gameState to 0
     public void timer(){
-        new CountDownTimer(7100, 1000) {    // 30100
+        new CountDownTimer(seconds, 1000) {
 
             @Override
             public void onTick(long millisecondsUntilFinished) {
@@ -43,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFinish() {
                 gameState = 0;
                 playAgainButton.setVisibility(View.VISIBLE);
+                optionsButton.setVisibility(View.VISIBLE);
                 timerTextView.setText("0s");
                 resultTextView.setText("Your Score: " + Integer.toString(score) + "/" + Integer.toString(numberOfQuestions));
             }
@@ -57,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         pointsTextView.setText("0/0");
         resultTextView.setText("");
         playAgainButton.setVisibility(View.INVISIBLE);
+        optionsButton.setVisibility(View.INVISIBLE);
 
         if(gameState == 1) {
             generateQuestion();
@@ -68,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void createAnswerDivision(int a, int b) {
         Random rand = new Random();
-        locationOfCorrectAnswer = rand.nextInt(4);
         double incorrectAnswer;
         double result = (double)a / (double)b;
 
@@ -99,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void createAnswers(int symbol, int a, int b) {
         Random rand = new Random();
-        locationOfCorrectAnswer = rand.nextInt(4);
         int incorrectAnswer;
         int result;
 
@@ -227,6 +238,12 @@ public class MainActivity extends AppCompatActivity {
         gameState = 1;
     }
 
+
+    public void options(View view){
+        Intent intent = new Intent(this, optionsActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -245,5 +262,13 @@ public class MainActivity extends AppCompatActivity {
         button2 = (Button)findViewById(R.id.button2);
         button3 = (Button)findViewById(R.id.button3);
         playAgainButton = (Button)findViewById(R.id.playAgainButton);
+        optionsButton = (Button)findViewById(R.id.optionsButton);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflator = getMenuInflater();
+        menuInflator.inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
