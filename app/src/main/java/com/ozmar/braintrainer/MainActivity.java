@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout gameRelativeLayout;
 
     ArrayList<Integer> answers = new ArrayList<>();
+    ArrayList<Double> answersDouble = new ArrayList<>();
 
     int locationOfCorrectAnswer;
     int score = 0;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     // Timer
     // OnFinish: Shows playAgainButton and score, sets gameState to 0
     public void timer(){
-        new CountDownTimer(3100, 1000) {
+        new CountDownTimer(7100, 1000) {    // 30100
 
             @Override
             public void onTick(long millisecondsUntilFinished) {
@@ -63,19 +64,68 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void createAnswers(int a, int b) {
+    public void createAnswerDivision(int a, int b) {
         Random rand = new Random();
+        locationOfCorrectAnswer = rand.nextInt(4);
+        double incorrectAnswer;
+        double result = (double)a / (double)b;
+
+        double rangeMin = 0;
+        double rangeMax = 40;
+
+        for(int i = 0; i < 4; i++) {
+            if(i == locationOfCorrectAnswer) {
+                answersDouble.add(result);
+            }
+
+            else {
+                incorrectAnswer = rangeMin + (rangeMax - rangeMin) * rand.nextDouble();
+
+                while(incorrectAnswer == result){
+                    incorrectAnswer = rangeMin + (rangeMax - rangeMin) * rand.nextDouble();
+                }
+
+                answersDouble.add(incorrectAnswer);
+            }
+        }
+
+    }
+
+    public void createAnswers(int symbol, int a, int b) {
+        Random rand = new Random();
+        locationOfCorrectAnswer = rand.nextInt(4);
         int incorrectAnswer;
+        int result;
+
         for(int i = 0; i < 4; i++) {
 
+            switch (symbol) {
+                case 0:
+                    result = a + b;
+                    break;
+
+                case 1:
+                    result = a - b;
+                    break;
+
+                case 2:
+                    result = a * b;
+                    break;
+
+                default:
+                    result = 0;
+                    break;
+            }
+
             if(i == locationOfCorrectAnswer) {
-                answers.add(a + b);
+                answers.add(result);
+
             }
 
             else {
                 incorrectAnswer = rand.nextInt(41);
 
-                while(incorrectAnswer == a + b){
+                while(incorrectAnswer == result){
                     incorrectAnswer = rand.nextInt(41);
                 }
 
@@ -84,19 +134,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void addition(int symbol, int a, int b) {
-        if(symbol == 0) {
-            sumTextView.setText(Integer.toString(a) + " + " + Integer.toString(b));
-        }
-
-        else if(symbol == 1) {
-            sumTextView.setText(Integer.toString(a) + " - " + Integer.toString(b));
-        }
-
-        else {
-            sumTextView.setText(Integer.toString(a) + " * " + Integer.toString(b));
-        }
-    }
 
     public void generateQuestion() {
         Random rand = new Random();
@@ -108,32 +145,51 @@ public class MainActivity extends AppCompatActivity {
 
         // 0 == "+"     1 == "-"    2 == "*"    3 == "/"
         int mathSymbol = rand.nextInt(4);
+//        mathSymbol = 0;
 
         switch(mathSymbol) {
+            case 0:
+                sumTextView.setText(Integer.toString(a) + " + " + Integer.toString(b));
+                createAnswers(0, a, b);
+                break;
+
             case 1:
+                sumTextView.setText(Integer.toString(a) + " - " + Integer.toString(b));
+                createAnswers(1, a, b);
                 break;
+
             case 2:
+                sumTextView.setText(Integer.toString(a) + " * " + Integer.toString(b));
+                createAnswers(2, a, b);
                 break;
+
             case 3:
+                while(b == 0){
+                    b = rand.nextInt(21);
+                }
+                sumTextView.setText(Integer.toString(a) + " / " + Integer.toString(b));
+                //createAnswers(2, a, b);
+                createAnswerDivision(a, b);
                 break;
-            case 4:
-                break;
+
             default:
                 break;
 
         }
 
-//          Test
-//        addition("+", a, b);
+        if(mathSymbol == 3) {
+            button0.setText(Double.toString((answers.get(0))));
+            button1.setText(Double.toString((answers.get(1))));
+            button2.setText(Double.toString((answers.get(2))));
+            button3.setText(Double.toString((answers.get(3))));
+        }
 
-        sumTextView.setText(Integer.toString(a) + " + " + Integer.toString(b));
-
-        createAnswers(a, b);
-
-        button0.setText(Integer.toString((answers.get(0))));
-        button1.setText(Integer.toString((answers.get(1))));
-        button2.setText(Integer.toString((answers.get(2))));
-        button3.setText(Integer.toString((answers.get(3))));
+        else {
+            button0.setText(Integer.toString((answers.get(0))));
+            button1.setText(Integer.toString((answers.get(1))));
+            button2.setText(Integer.toString((answers.get(2))));
+            button3.setText(Integer.toString((answers.get(3))));
+        }
 
     }
 
@@ -141,13 +197,13 @@ public class MainActivity extends AppCompatActivity {
     // Update score and number of questions
     // Get new question
     public void chooseAnswer(View view) {
-        if(gameState == 1){
+        if(gameState == 1) {
             if(view.getTag().toString().equals( Integer.toString(locationOfCorrectAnswer) )) {
                 score++;
                 resultTextView.setText("Correct!");
             }
 
-            else{
+            else {
                 resultTextView.setText("Wrong!");
             }
 
