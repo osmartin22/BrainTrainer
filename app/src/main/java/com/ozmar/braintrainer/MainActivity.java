@@ -12,6 +12,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static java.lang.StrictMath.round;
+
 public class MainActivity extends AppCompatActivity {
 
     Button startButton;
@@ -70,8 +72,10 @@ public class MainActivity extends AppCompatActivity {
         double incorrectAnswer;
         double result = (double)a / (double)b;
 
+        result = Math.round(result*100.0)/100.0;
+
         double rangeMin = 0;
-        double rangeMax = 40;
+        double rangeMax = 30;
 
         for(int i = 0; i < 4; i++) {
             if(i == locationOfCorrectAnswer) {
@@ -80,9 +84,11 @@ public class MainActivity extends AppCompatActivity {
 
             else {
                 incorrectAnswer = rangeMin + (rangeMax - rangeMin) * rand.nextDouble();
+                incorrectAnswer = Math.round(incorrectAnswer*10.0)/10.0;
 
                 while(incorrectAnswer == result){
                     incorrectAnswer = rangeMin + (rangeMax - rangeMin) * rand.nextDouble();
+                    incorrectAnswer = Math.round(incorrectAnswer*100.0)/100.0;
                 }
 
                 answersDouble.add(incorrectAnswer);
@@ -123,10 +129,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
             else {
-                incorrectAnswer = rand.nextInt(41);
+                incorrectAnswer = rand.nextInt(31);
 
                 while(incorrectAnswer == result){
-                    incorrectAnswer = rand.nextInt(41);
+                    incorrectAnswer = rand.nextInt(31);
                 }
 
                 answers.add(incorrectAnswer);
@@ -142,10 +148,10 @@ public class MainActivity extends AppCompatActivity {
 
         locationOfCorrectAnswer = rand.nextInt(4);
         answers.clear();
+        answersDouble.clear();
 
         // 0 == "+"     1 == "-"    2 == "*"    3 == "/"
         int mathSymbol = rand.nextInt(4);
-//        mathSymbol = 0;
 
         switch(mathSymbol) {
             case 0:
@@ -168,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
                     b = rand.nextInt(21);
                 }
                 sumTextView.setText(Integer.toString(a) + " / " + Integer.toString(b));
-                //createAnswers(2, a, b);
                 createAnswerDivision(a, b);
                 break;
 
@@ -178,10 +183,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(mathSymbol == 3) {
-            button0.setText(Double.toString((answers.get(0))));
-            button1.setText(Double.toString((answers.get(1))));
-            button2.setText(Double.toString((answers.get(2))));
-            button3.setText(Double.toString((answers.get(3))));
+            button0.setText(Double.toString((answersDouble.get(0))));
+            button1.setText(Double.toString((answersDouble.get(1))));
+            button2.setText(Double.toString((answersDouble.get(2))));
+            button3.setText(Double.toString((answersDouble.get(3))));
         }
 
         else {
