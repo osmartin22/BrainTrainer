@@ -4,39 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
     tools:context="com.ozmar.braintrainer.optionsActivity"
-    tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp">
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
 
-    <CheckBox
-        android:id="@+id/checkBox14"
+    <TextView
+        android:id="@+id/infoTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Addition"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="119dp" />
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="67dp"
+        android:text="Which Questions\n Would You Like?"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="25sp"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <CheckBox
-        android:id="@+id/checkBox15"
+    <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Multiplication"
-        tools:layout_editor_absoluteY="119dp"
-        tools:layout_editor_absoluteX="248dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoTextView">
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
 
-    <CheckBox
-        android:id="@+id/checkBox16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Subtraction"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="314dp" />
+        <CheckBox
+            android:id="@+id/checkBox17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:text="Division"
+            android:textColor="@android:color/darker_gray"
+            android:buttonTint="@android:color/darker_gray"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="224dp"
+            tools:layout_editor_absoluteY="117dp" />
 
-    <CheckBox
-        android:id="@+id/checkBox17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Division"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="205dp" />
+        <CheckBox
+            android:id="@+id/checkBox16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_marginBottom="-13dp"
+            android:layout_row="1"
+            android:text="Subtraction"
+            android:textColor="@android:color/darker_gray"
+            android:buttonTint="@android:color/darker_gray"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBox17"
+            tools:layout_editor_absoluteX="78dp" />
+
+        <CheckBox
+            android:id="@+id/checkBox15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:text="Multiplication"
+            android:textColor="@android:color/darker_gray"
+            android:buttonTint="@android:color/darker_gray"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@+id/checkBox17"
+            tools:layout_editor_absoluteY="203dp" />
+
+        <CheckBox
+            android:id="@+id/checkBox14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:buttonTint="@android:color/darker_gray"
+            android:checked="true"
+            android:text="Addition"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@+id/checkBox16"
+            app:layout_constraintTop_toTopOf="@+id/checkBox15" />
+    </GridLayout>
+
 </android.support.constraint.ConstraintLayout>

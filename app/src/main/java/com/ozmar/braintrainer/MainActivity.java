@@ -22,13 +22,18 @@ public class MainActivity extends AppCompatActivity {
     // TODO:
     // Add menu option that allows user to choose various settings
         // Like just addition or addition and subtraction
-    //
-    // Show high score at the end fro each of the possibilities
+        // Options will have to be stored in data
+
+    // Show high score at the end for each of the possibilities
         // Maybe just for the major ones, all options is a lot
 
-    Button startButton;
+    // Maybe
+        // Have option for rounding
+        // Have option for decimal multiplication
+
+    Button startButton, playAgainButton, optionsButton;
+    Button button0, button1, button2, button3;
     TextView  pointsTextView, sumTextView, resultTextView, timerTextView;
-    Button button0, button1, button2, button3, playAgainButton, optionsButton;
     RelativeLayout gameRelativeLayout;
 
     ArrayList<Integer> answers = new ArrayList<>();
@@ -39,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     int score = 0;
     int numberOfQuestions = 0;
     int gameState = 0;  // 0 for not currently running, 1 for running
+    int randNum = 31;
 
     // Timer
     // OnFinish: Shows playAgainButton and score, sets gameState to 0
@@ -61,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         }.start();
     }
 
+    // Start game over again
     public void playAgain(final View view) {
         gameState = 1;
         score = 0;
@@ -71,23 +78,21 @@ public class MainActivity extends AppCompatActivity {
         playAgainButton.setVisibility(View.INVISIBLE);
         optionsButton.setVisibility(View.INVISIBLE);
 
-        if(gameState == 1) {
-            generateQuestion();
-        }
-
+        generateQuestion();
         timer();
-
     }
 
+    // Create answers for division
+    // Separate function due to creating double instead of int
     public void createAnswerDivision(int a, int b) {
         Random rand = new Random();
         double incorrectAnswer;
         double result = (double)a / (double)b;
 
-        result = Math.round(result*100.0)/100.0;
+        result = Math.round(result*10.0)/10.0;
 
         double rangeMin = 0;
-        double rangeMax = 30;
+        double rangeMax = 20;
 
         for(int i = 0; i < 4; i++) {
             if(i == locationOfCorrectAnswer) {
@@ -109,26 +114,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Make a new question for +, -, *
     public void createAnswers(int symbol, int a, int b) {
         Random rand = new Random();
         int incorrectAnswer;
         int result;
 
         for(int i = 0; i < 4; i++) {
-
             switch (symbol) {
-                case 0:
+                case 0:             // Addition
                     result = a + b;
                     break;
-
-                case 1:
+                case 1:             // Subtraction
                     result = a - b;
                     break;
-
-                case 2:
+                case 2:             // Multiplication
                     result = a * b;
                     break;
-
                 default:
                     result = 0;
                     break;
@@ -136,16 +138,13 @@ public class MainActivity extends AppCompatActivity {
 
             if(i == locationOfCorrectAnswer) {
                 answers.add(result);
-
             }
 
             else {
-                incorrectAnswer = rand.nextInt(31);
-
+                incorrectAnswer = rand.nextInt(randNum);
                 while(incorrectAnswer == result){
-                    incorrectAnswer = rand.nextInt(31);
+                    incorrectAnswer = rand.nextInt(randNum);
                 }
-
                 answers.add(incorrectAnswer);
             }
         }
@@ -154,8 +153,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void generateQuestion() {
         Random rand = new Random();
-        int a = rand.nextInt(21);
-        int b = rand.nextInt(21);
+        int a = rand.nextInt(randNum);
+        int b = rand.nextInt(randNum);
 
         locationOfCorrectAnswer = rand.nextInt(4);
         answers.clear();
@@ -230,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // Start game
+    // Start game button
     public void start(View view){
         startButton.setVisibility(View.INVISIBLE);
         gameRelativeLayout.setVisibility(View.VISIBLE);
@@ -239,6 +238,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // Switch Screen to choose options
     public void options(View view){
         Intent intent = new Intent(this, optionsActivity.class);
         startActivity(intent);
@@ -265,10 +265,11 @@ public class MainActivity extends AppCompatActivity {
         optionsButton = (Button)findViewById(R.id.optionsButton);
     }
 
+    // Settings button at the top
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflator = getMenuInflater();
-        menuInflator.inflate(R.menu.main_menu, menu);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 }
