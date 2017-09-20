@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         gameState = 1;
         score = 0;
         numberOfQuestions = 0;
-        //timerTextView.setText("30s");
         pointsTextView.setText("0/0");
         resultTextView.setText("");
         playAgainButton.setVisibility(View.INVISIBLE);
@@ -250,9 +249,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Toast toast = Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT);
-        toast.show();
+//
+//        Toast toast = Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT);
+//        toast.show();
 
         gameRelativeLayout = (RelativeLayout)findViewById(R.id.gameRelativeLayout);
 
@@ -271,40 +270,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Toast toast = Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT);
-        toast.show();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Toast toast = Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT);
-        toast.show();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Toast toast = Toast.makeText(getApplicationContext(), "onPause()", Toast.LENGTH_SHORT);
-        toast.show();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Toast toast = Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT);
-        toast.show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Toast toast = Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT);
-        toast.show();
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        Toast toast = Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT);
+//        toast.show();
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        Toast toast = Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT);
+//        toast.show();
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        Toast toast = Toast.makeText(getApplicationContext(), "onPause()", Toast.LENGTH_SHORT);
+//        toast.show();
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        Toast toast = Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT);
+//        toast.show();
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        Toast toast = Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT);
+//        toast.show();
+//    }
 
     // Settings button at the top
     @Override
@@ -314,7 +313,3 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 }
-
-//
-//    Toast toast = Toast.makeText(getApplicationContext(), "Subtraction Unchecked", Toast.LENGTH_SHORT);
-//    toast.show();

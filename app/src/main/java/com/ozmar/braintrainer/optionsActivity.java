@@ -31,44 +31,13 @@ public class optionsActivity extends AppCompatActivity {
         return ((CheckBox) view).isChecked();
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_options);
-
-        Toast toast = Toast.makeText(getApplicationContext(), "onCreate2()", Toast.LENGTH_SHORT);
-        toast.show();
-
-        checkBoxAddition = (CheckBox) findViewById(R.id.checkBoxAddition);
-        checkBoxSubtraction = (CheckBox) findViewById(R.id.checkBoxSubtraction);
-        checkBoxMultiplication = (CheckBox) findViewById(R.id.checkBoxMultiplication);
-        checkBoxDivision = (CheckBox) findViewById(R.id.checkBoxDivision);
-
-        settings = getSharedPreferences("User Settings", Context.MODE_PRIVATE);
-
-        addition = settings.getString("Addition", "");
-        subtraction = settings.getString("Subtraction", "");
-        multiplication = settings.getString("Multiplication", "");
-        division = settings.getString("Division", "");
-
-        setCheckBoxDisplay(checkBoxAddition, addition);
-        setCheckBoxDisplay(checkBoxSubtraction, subtraction);
-        setCheckBoxDisplay(checkBoxMultiplication, multiplication);
-        setCheckBoxDisplay(checkBoxDivision, division);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Toast toast = Toast.makeText(getApplicationContext(), "onStart2()", Toast.LENGTH_SHORT);
-        toast.show();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Toast toast = Toast.makeText(getApplicationContext(), "onResume2()", Toast.LENGTH_SHORT);
-        toast.show();
+    // Saving seems to be working fine
+    // If it seems to fail at some point then use a OnSharedPreferenceChangeListener
+    protected void saveUserSettings(View view){
+        saveCheckBoxStatus(checkBoxAddition);
+        saveCheckBoxStatus(checkBoxSubtraction);
+        saveCheckBoxStatus(checkBoxMultiplication);
+        saveCheckBoxStatus(checkBoxDivision);
     }
 
     protected void saveCheckBoxStatus(View view){
@@ -87,29 +56,64 @@ public class optionsActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_options);
 
-        Toast toast = Toast.makeText(getApplicationContext(), "onPause2()", Toast.LENGTH_SHORT);
-        toast.show();
+//        Toast toast = Toast.makeText(getApplicationContext(), "onCreate2()", Toast.LENGTH_SHORT);
+//        toast.show();
 
-        saveCheckBoxStatus(checkBoxAddition);
-        saveCheckBoxStatus(checkBoxSubtraction);
-        saveCheckBoxStatus(checkBoxMultiplication);
-        saveCheckBoxStatus(checkBoxDivision);
+        checkBoxAddition = (CheckBox) findViewById(R.id.checkBoxAddition);
+        checkBoxSubtraction = (CheckBox) findViewById(R.id.checkBoxSubtraction);
+        checkBoxMultiplication = (CheckBox) findViewById(R.id.checkBoxMultiplication);
+        checkBoxDivision = (CheckBox) findViewById(R.id.checkBoxDivision);
+
+        settings = getSharedPreferences("User Settings", Context.MODE_PRIVATE);
+
+        addition = settings.getString("Addition", "");
+        subtraction = settings.getString("Subtraction", "");
+        multiplication = settings.getString("Multiplication", "");
+        division = settings.getString("Division", "");
+
+        setCheckBoxDisplay(checkBoxAddition, addition);
+        setCheckBoxDisplay(checkBoxSubtraction, subtraction);
+        setCheckBoxDisplay(checkBoxMultiplication, multiplication);
+        setCheckBoxDisplay(checkBoxDivision, division);
     }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Toast toast = Toast.makeText(getApplicationContext(), "onStop2()", Toast.LENGTH_SHORT);
-        toast.show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Toast toast = Toast.makeText(getApplicationContext(), "onDestroy2()", Toast.LENGTH_SHORT);
-        toast.show();
-    }
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        Toast toast = Toast.makeText(getApplicationContext(), "onStart2()", Toast.LENGTH_SHORT);
+//        toast.show();
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        Toast toast = Toast.makeText(getApplicationContext(), "onResume2()", Toast.LENGTH_SHORT);
+//        toast.show();
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//
+//        Toast toast = Toast.makeText(getApplicationContext(), "onPause2()", Toast.LENGTH_SHORT);
+//        toast.show();
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        Toast toast = Toast.makeText(getApplicationContext(), "onStop2()", Toast.LENGTH_SHORT);
+//        toast.show();
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        Toast toast = Toast.makeText(getApplicationContext(), "onDestroy2()", Toast.LENGTH_SHORT);
+//        toast.show();
+//    }
 }
