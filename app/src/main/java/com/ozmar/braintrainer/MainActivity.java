@@ -1,6 +1,8 @@
 package com.ozmar.braintrainer;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,8 +16,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-import static java.lang.StrictMath.round;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -263,6 +263,17 @@ public class MainActivity extends AppCompatActivity {
         button3 = (Button)findViewById(R.id.button3);
         playAgainButton = (Button)findViewById(R.id.playAgainButton);
         optionsButton = (Button)findViewById(R.id.optionsButton);
+
+        SharedPreferences settings = getSharedPreferences("User Settings", Context.MODE_PRIVATE);
+
+        // Write to shared preference
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("myString", "This Is Working");
+        editor.putString("Addition" , "1");
+        editor.putString("Subtraction" , "0");
+        editor.putString("Multiplication" , "0");
+        editor.putString("Division" , "0");
+        editor.apply();
     }
 
     // Settings button at the top
