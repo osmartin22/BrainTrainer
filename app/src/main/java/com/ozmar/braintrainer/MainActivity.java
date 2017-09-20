@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.CountDownTimer;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     Button startButton, playAgainButton, optionsButton, stopButton;
     Button button0, button1, button2, button3;
     TextView  pointsTextView, sumTextView, resultTextView, timerTextView;
-    RelativeLayout gameRelativeLayout;
+    ConstraintLayout gameRelativeLayout;
 
     ArrayList<Integer> answers = new ArrayList<>();
     ArrayList<Double> answersDouble = new ArrayList<>();
@@ -274,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
 //        Toast toast = Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT);
 //        toast.show();
 
-        gameRelativeLayout = (RelativeLayout)findViewById(R.id.gameRelativeLayout);
+        gameRelativeLayout = (ConstraintLayout)findViewById(R.id.gameConstraintLayout);
 
         startButton = (Button)findViewById(R.id.startButton);
         pointsTextView = (TextView)findViewById(R.id.pointsTextView);

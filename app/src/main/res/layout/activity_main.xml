@@ -1,89 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_dark"
-    android:padding="10dp"
-    tools:context="com.ozmar.braintrainer.MainActivity">
-
-    <Button
-        android:id="@+id/optionsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="17dp"
-        android:layout_marginStart="11dp"
-        android:onClick="options"
-        android:text="Options"
-        android:visibility="visible" />
+    android:visibility="visible"
+    tools:context="com.ozmar.braintrainer.MainActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
 
     <Button
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginBottom="9dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@android:color/holo_green_dark"
         android:onClick="start"
         android:padding="40dp"
         android:text="Start"
         android:textSize="80sp"
-        android:visibility="invisible" />
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:id="@+id/gameRelativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:visibility="visible">
+    <Button
+        android:id="@+id/optionsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="options"
+        android:text="Options"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/gameConstraintLayout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.498" />
 
-        <Button
-            android:id="@+id/stopButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="stopPlaying"
-            android:text="Stop"
-            android:visibility="visible"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/pointsTextView"
-            android:layout_marginEnd="15dp" />
-
-        <Button
-            android:id="@+id/resetButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="resetGame"
-            android:text="reset"
-            android:visibility="visible"
-            android:layout_alignBaseline="@+id/stopButton"
-            android:layout_alignBottom="@+id/stopButton"
-            android:layout_toEndOf="@+id/timerTextView"
-            android:layout_marginStart="10dp" />
-
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/gameConstraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <Button
             android:id="@+id/playAgainButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="92dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:onClick="playAgain"
             android:text="Play Again"
-            android:visibility="invisible" />
+            android:visibility="visible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="64dp" />
 
         <GridLayout
-            android:id="@id/grid"
-            android:layout_width="match_parent"
+            android:id="@+id/grid"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/sumTextView"
-            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
             android:tag="gridLayout"
-            android:visibility="visible">
+            android:visibility="visible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sumTextView">
 
             <Button
                 android:id="@+id/button"
@@ -98,7 +102,9 @@
                 android:onClick="chooseAnswer"
                 android:tag="0"
                 android:text="3"
-                android:textSize="60sp" />
+                android:textSize="60sp"
+                tools:layout_editor_absoluteX="143dp"
+                tools:layout_editor_absoluteY="56dp" />
 
             <Button
                 android:id="@+id/button1"
@@ -150,27 +156,21 @@
         </GridLayout>
 
         <TextView
-            android:id="@+id/sumTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:padding="15dp"
-            android:text="31+12"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="25sp" />
-
-        <TextView
             android:id="@+id/pointsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
             android:background="#ff8102"
             android:padding="10dp"
             android:text="0/0"
             android:textColor="@android:color/black"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/timerTextView"
@@ -178,21 +178,81 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/sumTextView"
             android:layout_alignParentStart="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:background="#f8d90e"
             android:padding="10dp"
             android:text="30s"
             android:textColor="@android:color/black"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sumTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:padding="15dp"
+            android:text="31+12"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="25sp"
+            app:layout_constraintLeft_toRightOf="@+id/timerTextView"
+            app:layout_constraintRight_toLeftOf="@+id/pointsTextView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/resetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:onClick="resetGame"
+            android:text="reset"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/stopButton"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <Button
+            android:id="@+id/stopButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:onClick="stopPlaying"
+            android:text="Stop"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/playAgainButton"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
             android:id="@+id/resultTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/playAgainButton"
-            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="32dp"
             android:textColor="@android:color/darker_gray"
-            android:textSize="40sp" />
-    </RelativeLayout>
+            android:textSize="40sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/grid" />
+    </android.support.constraint.ConstraintLayout>
 
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
