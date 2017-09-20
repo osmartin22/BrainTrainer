@@ -12,43 +12,41 @@ import android.widget.Toast;
 
 public class optionsActivity extends AppCompatActivity {
     String addition, subtraction, multiplication, division;
-
     CheckBox checkBoxAddition, checkBoxSubtraction, checkBoxMultiplication, checkBoxDivision;
-
     SharedPreferences settings;
 
-    public void setCheckBoxDisplay(View view, String s){
-        if(s.equals("1")){
+    public void setCheckBoxDisplay(View view, String s) {
+        if(s.equals("1")) {
             ((CheckBox)view).setChecked(true);
         }
 
-        else{
+        else {
             ((CheckBox)view).setChecked(false);
         }
     }
 
-    public boolean checkCheckBoxStatus(View view){
+    public boolean checkCheckBoxStatus(View view) {
         return ((CheckBox) view).isChecked();
     }
 
     // Saving seems to be working fine
     // If it seems to fail at some point then use a OnSharedPreferenceChangeListener
-    protected void saveUserSettings(View view){
+    protected void saveUserSettings(View view) {
         saveCheckBoxStatus(checkBoxAddition);
         saveCheckBoxStatus(checkBoxSubtraction);
         saveCheckBoxStatus(checkBoxMultiplication);
         saveCheckBoxStatus(checkBoxDivision);
     }
 
-    protected void saveCheckBoxStatus(View view){
+    protected void saveCheckBoxStatus(View view) {
         SharedPreferences.Editor editor = settings.edit();
         String name = ((CheckBox)view).getText().toString();
 
-        if(checkCheckBoxStatus(view)){
+        if(checkCheckBoxStatus(view)) {
             editor.putString(name, "1");
         }
 
-        else{
+        else {
             editor.putString(name, "0");
         }
 

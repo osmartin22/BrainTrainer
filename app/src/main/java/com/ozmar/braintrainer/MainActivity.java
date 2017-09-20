@@ -21,9 +21,16 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     // TODO:
-    // Add menu option that allows user to choose various settings
-        // Like just addition or addition and subtraction
-        // Options will have to be stored in data
+
+    // Have a stop button when user is playing to stop game
+        // Maybe a resume button
+            // Rename stop button to pause button
+            // If used a reset button will be needed
+            // Or can use playAgain button
+
+    // Maybe add reset button or modify playAgainButton
+        // Allows user to play again immediately if the feel they are doing bad
+        // Eliminates 1 button click from stop to play again button
 
     // Show high score at the end for each of the possibilities
         // Maybe just for the major ones, all options is a lot
@@ -32,13 +39,14 @@ public class MainActivity extends AppCompatActivity {
         // Have option for rounding
         // Have option for decimal multiplication
 
-    Button startButton, playAgainButton, optionsButton;
+    Button startButton, playAgainButton, optionsButton, stopButton;
     Button button0, button1, button2, button3;
     TextView  pointsTextView, sumTextView, resultTextView, timerTextView;
     RelativeLayout gameRelativeLayout;
 
     ArrayList<Integer> answers = new ArrayList<>();
     ArrayList<Double> answersDouble = new ArrayList<>();
+    CountDownTimer myCountDownTimer;
 
     int seconds = 7100;
     int locationOfCorrectAnswer;
@@ -50,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     // Timer
     // OnFinish: Shows playAgainButton and score, sets gameState to 0
     public void timer(){
-        new CountDownTimer(seconds, 1000) {
+        myCountDownTimer = new CountDownTimer(seconds, 1000) {
 
             @Override
             public void onTick(long millisecondsUntilFinished) {
@@ -78,8 +86,21 @@ public class MainActivity extends AppCompatActivity {
         playAgainButton.setVisibility(View.INVISIBLE);
         optionsButton.setVisibility(View.INVISIBLE);
 
+
         generateQuestion();
         timer();
+    }
+
+    public void resetGame(View view) {
+        myCountDownTimer.cancel();
+        playAgain(view);
+    }
+
+    public void stopPlaying(View view){
+        gameState = 0;
+        myCountDownTimer.cancel();
+        playAgainButton.setVisibility(View.VISIBLE);
+        optionsButton.setVisibility(View.VISIBLE);
     }
 
     // Create answers for division
@@ -267,6 +288,7 @@ public class MainActivity extends AppCompatActivity {
         button3 = (Button)findViewById(R.id.button3);
         playAgainButton = (Button)findViewById(R.id.playAgainButton);
         optionsButton = (Button)findViewById(R.id.optionsButton);
+        stopButton = (Button)findViewById(R.id.stopButton);
     }
 
 
