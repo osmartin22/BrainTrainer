@@ -36,6 +36,9 @@ public class optionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
 
+        Toast toast = Toast.makeText(getApplicationContext(), "onCreate2()", Toast.LENGTH_SHORT);
+        toast.show();
+
         checkBoxAddition = (CheckBox) findViewById(R.id.checkBoxAddition);
         checkBoxSubtraction = (CheckBox) findViewById(R.id.checkBoxSubtraction);
         checkBoxMultiplication = (CheckBox) findViewById(R.id.checkBoxMultiplication);
@@ -54,7 +57,21 @@ public class optionsActivity extends AppCompatActivity {
         setCheckBoxDisplay(checkBoxDivision, division);
     }
 
-    public void save(View view){
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Toast toast = Toast.makeText(getApplicationContext(), "onStart2()", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast toast = Toast.makeText(getApplicationContext(), "onResume2()", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    protected void saveCheckBoxStatus(View view){
         SharedPreferences.Editor editor = settings.edit();
         String name = ((CheckBox)view).getText().toString();
 
@@ -70,12 +87,29 @@ public class optionsActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onPause() {
+    protected void onPause() {
         super.onPause();
 
-        save(checkBoxAddition);
-        save(checkBoxSubtraction);
-        save(checkBoxMultiplication);
-        save(checkBoxDivision);
+        Toast toast = Toast.makeText(getApplicationContext(), "onPause2()", Toast.LENGTH_SHORT);
+        toast.show();
+
+        saveCheckBoxStatus(checkBoxAddition);
+        saveCheckBoxStatus(checkBoxSubtraction);
+        saveCheckBoxStatus(checkBoxMultiplication);
+        saveCheckBoxStatus(checkBoxDivision);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Toast toast = Toast.makeText(getApplicationContext(), "onStop2()", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Toast toast = Toast.makeText(getApplicationContext(), "onDestroy2()", Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

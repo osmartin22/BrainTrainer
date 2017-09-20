@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -250,6 +251,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toast toast = Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT);
+        toast.show();
+
         gameRelativeLayout = (RelativeLayout)findViewById(R.id.gameRelativeLayout);
 
         startButton = (Button)findViewById(R.id.startButton);
@@ -276,6 +280,42 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Toast toast = Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast toast = Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Toast toast = Toast.makeText(getApplicationContext(), "onPause()", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Toast toast = Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Toast toast = Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
     // Settings button at the top
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -284,3 +324,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 }
+
+//
+//    Toast toast = Toast.makeText(getApplicationContext(), "Subtraction Unchecked", Toast.LENGTH_SHORT);
+//    toast.show();
