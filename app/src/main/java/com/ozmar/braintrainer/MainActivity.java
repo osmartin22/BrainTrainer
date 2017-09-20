@@ -232,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
     // Start game button
     public void start(View view){
         startButton.setVisibility(View.INVISIBLE);
+        optionsButton.setVisibility(View.INVISIBLE);
         gameRelativeLayout.setVisibility(View.VISIBLE);
         playAgain(findViewById(R.id.playAgainButton));
         gameState = 1;
@@ -268,7 +269,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Write to shared preference
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString("myString", "This Is Working");
         editor.putString("Addition" , "1");
         editor.putString("Subtraction" , "0");
         editor.putString("Multiplication" , "0");

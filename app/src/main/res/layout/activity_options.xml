@@ -48,8 +48,7 @@
             android:buttonTint="@android:color/darker_gray"
             android:textSize="20sp"
             tools:layout_editor_absoluteX="224dp"
-            tools:layout_editor_absoluteY="117dp"
-            android:onClick="onCheckBoxClicked" />
+            tools:layout_editor_absoluteY="117dp" />
 
         <CheckBox
             android:id="@+id/checkBoxSubtraction"
@@ -62,8 +61,7 @@
             android:textColor="@android:color/darker_gray"
             android:buttonTint="@android:color/darker_gray"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="78dp"
-            android:onClick="onCheckBoxClicked" />
+            tools:layout_editor_absoluteX="78dp" />
 
         <CheckBox
             android:id="@+id/checkBoxMultiplication"
@@ -75,8 +73,7 @@
             android:textColor="@android:color/darker_gray"
             android:buttonTint="@android:color/darker_gray"
             android:textSize="20sp"
-            tools:layout_editor_absoluteY="203dp"
-            android:onClick="onCheckBoxClicked" />
+            tools:layout_editor_absoluteY="203dp" />
 
         <CheckBox
             android:id="@+id/checkBoxAddition"
@@ -88,21 +85,7 @@
             android:checked="true"
             android:text="Addition"
             android:textColor="@android:color/darker_gray"
-            android:textSize="20sp"
-            android:onClick="onCheckBoxClicked" />
+            android:textSize="20sp" />
     </GridLayout>
-
-    <EditText
-        android:id="@+id/testTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test"
-        android:textColor="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@+id/grid"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
