@@ -268,16 +268,6 @@ public class MainActivity extends AppCompatActivity {
         button3 = (Button)findViewById(R.id.button3);
         playAgainButton = (Button)findViewById(R.id.playAgainButton);
         optionsButton = (Button)findViewById(R.id.optionsButton);
-
-        SharedPreferences settings = getSharedPreferences("User Settings", Context.MODE_PRIVATE);
-
-        // Write to shared preference
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString("Addition" , "1");
-        editor.putString("Subtraction" , "0");
-        editor.putString("Multiplication" , "0");
-        editor.putString("Division" , "0");
-        editor.apply();
     }
 
 
