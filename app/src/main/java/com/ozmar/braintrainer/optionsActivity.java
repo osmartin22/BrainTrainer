@@ -2,6 +2,7 @@ package com.ozmar.braintrainer;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,6 +58,12 @@ public class optionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
 
+//        View decorView = getWindow().getDecorView();
+//        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+//        decorView.setSystemUiVisibility(uiOptions);
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.hide();
+
 //        Toast toast = Toast.makeText(getApplicationContext(), "onCreate2()", Toast.LENGTH_SHORT);
 //        toast.show();
 
@@ -77,40 +84,44 @@ public class optionsActivity extends AppCompatActivity {
         setCheckBoxDisplay(checkBoxMultiplication, multiplication);
         setCheckBoxDisplay(checkBoxDivision, division);
     }
-//
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
 //        Toast toast = Toast.makeText(getApplicationContext(), "onStart2()", Toast.LENGTH_SHORT);
 //        toast.show();
-//    }
-//
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
 //        Toast toast = Toast.makeText(getApplicationContext(), "onResume2()", Toast.LENGTH_SHORT);
 //        toast.show();
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
 //        Toast toast = Toast.makeText(getApplicationContext(), "onPause2()", Toast.LENGTH_SHORT);
 //        toast.show();
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
 //        Toast toast = Toast.makeText(getApplicationContext(), "onStop2()", Toast.LENGTH_SHORT);
 //        toast.show();
-//    }
-//
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
 //        Toast toast = Toast.makeText(getApplicationContext(), "onDestroy2()", Toast.LENGTH_SHORT);
 //        toast.show();
-//    }
+    }
 }

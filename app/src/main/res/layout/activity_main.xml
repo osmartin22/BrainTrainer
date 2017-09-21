@@ -44,7 +44,9 @@
         app:layout_constraintBottom_toBottomOf="@+id/gameConstraintLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.498" />
+        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/gameConstraintLayout"
@@ -56,38 +58,106 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            app:layout_constraintBottom_toTopOf="@id/guidelineDisplay"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteY="16dp">
+
+            <TextView
+                android:id="@+id/pointsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#ff8102"
+                android:padding="10dp"
+                android:text="@string/pointsTextView"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="40sp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/questionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:text="@string/questionTextView"
+                android:textAlignment="center"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="40sp"
+                app:layout_constraintLeft_toRightOf="@+id/timerTextView"
+                app:layout_constraintRight_toLeftOf="@+id/pointsTextView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/timerTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#f8d90e"
+                android:padding="10dp"
+                android:text="@string/timerTextView"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="40sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/playAgainButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="64dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
             android:onClick="playAgain"
             android:text="@string/playAgainButton"
             android:visibility="visible"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="64dp" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <GridLayout
             android:id="@+id/grid"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/questionTextView"
-            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:tag="gridLayout"
             android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/resultTextView"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/questionTextView">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
             <Button
                 android:id="@+id/button"
@@ -100,11 +170,10 @@
                 android:layout_rowWeight="1"
                 android:background="#33affc"
                 android:onClick="chooseAnswer"
+                android:padding="10dp"
                 android:tag="0"
                 android:text="@string/button0"
-                android:textSize="60sp"
-                tools:layout_editor_absoluteX="143dp"
-                tools:layout_editor_absoluteY="56dp" />
+                android:textSize="60sp" />
 
             <Button
                 android:id="@+id/button1"
@@ -117,6 +186,7 @@
                 android:layout_rowWeight="1"
                 android:background="#fc33d4"
                 android:onClick="chooseAnswer"
+                android:padding="10dp"
                 android:tag="1"
                 android:text="@string/button1"
                 android:textSize="60sp" />
@@ -132,9 +202,9 @@
                 android:layout_rowWeight="1"
                 android:background="#58fc33"
                 android:onClick="chooseAnswer"
+                android:padding="10dp"
                 android:tag="2"
                 android:text="@string/button2"
-
                 android:textSize="60sp" />
 
             <Button
@@ -148,69 +218,19 @@
                 android:layout_rowWeight="1"
                 android:background="#1684a8"
                 android:onClick="chooseAnswer"
+                android:padding="10dp"
                 android:tag="3"
                 android:text="@string/button3"
                 android:textSize="60sp" />
 
-
         </GridLayout>
-
-        <TextView
-            android:id="@+id/pointsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="16dp"
-            android:background="#ff8102"
-            android:padding="10dp"
-            android:text="@string/pointsTextView"
-            android:textColor="@android:color/black"
-            android:textSize="30sp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/timerTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/questionTextView"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:background="#f8d90e"
-            android:padding="10dp"
-            android:text="@string/timerTextView"
-            android:textColor="@android:color/black"
-            android:textSize="30sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/questionTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:padding="15dp"
-            android:text="@string/questionTextView"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="25sp"
-            app:layout_constraintLeft_toRightOf="@+id/timerTextView"
-            app:layout_constraintRight_toLeftOf="@+id/pointsTextView"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/resetButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
@@ -226,9 +246,10 @@
             android:id="@+id/stopButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
             android:onClick="stopPlaying"
             android:text="@string/stopButton"
             android:visibility="visible"
@@ -242,14 +263,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/playAgainButton"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="8dp"
             android:textColor="@android:color/darker_gray"
             android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@+id/resetButton"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/grid" />
+            app:layout_constraintRight_toRightOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
 

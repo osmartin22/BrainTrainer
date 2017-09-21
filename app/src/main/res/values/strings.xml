@@ -11,10 +11,10 @@
     <string name="stopButton">Stop</string>
     <string name="saveUserSettingsButton">Save Settings</string>
 
-    <string name="button0">0</string>
-    <string name="button1">1</string>
-    <string name="button2">2</string>
-    <string name="button3">3</string>
+    <string name="button0">00.00</string>
+    <string name="button1">11.11</string>
+    <string name="button2">22.22</string>
+    <string name="button3">33.33</string>
 
     <!--
     Names for CheckBox
