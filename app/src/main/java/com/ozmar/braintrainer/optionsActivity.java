@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.Toast;
 
 public class optionsActivity extends AppCompatActivity {
@@ -31,7 +30,7 @@ public class optionsActivity extends AppCompatActivity {
 
     // Saving seems to be working fine
     // If it seems to fail at some point then use a OnSharedPreferenceChangeListener
-    protected void saveUserSettings(View view) {
+    public void saveUserSettings(View view) {
         saveCheckBoxStatus(checkBoxAddition);
         saveCheckBoxStatus(checkBoxSubtraction);
         saveCheckBoxStatus(checkBoxMultiplication);

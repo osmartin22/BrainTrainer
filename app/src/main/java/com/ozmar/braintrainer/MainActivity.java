@@ -1,20 +1,15 @@
 package com.ozmar.braintrainer;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.CountDownTimer;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -42,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button startButton, playAgainButton, optionsButton, stopButton;
     Button button0, button1, button2, button3;
-    TextView  pointsTextView, sumTextView, resultTextView, timerTextView;
+    TextView  pointsTextView, questionTextView, resultTextView, timerTextView;
     ConstraintLayout gameRelativeLayout;
 
     ArrayList<Integer> answers = new ArrayList<>();
@@ -63,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTick(long millisecondsUntilFinished) {
-                timerTextView.setText(String.valueOf(millisecondsUntilFinished / 1000) + "s");
+                String time = String.valueOf(millisecondsUntilFinished / 1000) + getString(R.string.s);
+                timerTextView.setText(time);
             }
 
             @Override
@@ -71,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 gameState = 0;
                 playAgainButton.setVisibility(View.VISIBLE);
                 optionsButton.setVisibility(View.VISIBLE);
-                timerTextView.setText("0s");
+                timerTextView.setText(getString(R.string.timerSetText));
                 resultTextView.setText("Your Score: " + Integer.toString(score) + "/" + Integer.toString(numberOfQuestions));
             }
         }.start();
@@ -187,17 +183,17 @@ public class MainActivity extends AppCompatActivity {
 
         switch(mathSymbol) {
             case 0:
-                sumTextView.setText(Integer.toString(a) + " + " + Integer.toString(b));
+                questionTextView.setText(Integer.toString(a) + " + " + Integer.toString(b));
                 createAnswers(0, a, b);
                 break;
 
             case 1:
-                sumTextView.setText(Integer.toString(a) + " - " + Integer.toString(b));
+                questionTextView.setText(Integer.toString(a) + " - " + Integer.toString(b));
                 createAnswers(1, a, b);
                 break;
 
             case 2:
-                sumTextView.setText(Integer.toString(a) + " * " + Integer.toString(b));
+                questionTextView.setText(Integer.toString(a) + " * " + Integer.toString(b));
                 createAnswers(2, a, b);
                 break;
 
@@ -205,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
                 while(b == 0){
                     b = rand.nextInt(21);
                 }
-                sumTextView.setText(Integer.toString(a) + " / " + Integer.toString(b));
+                questionTextView.setText(Integer.toString(a) + " / " + Integer.toString(b));
                 createAnswerDivision(a, b);
                 break;
 
@@ -215,17 +211,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(mathSymbol == 3) {
-            button0.setText(Double.toString((answersDouble.get(0))));
-            button1.setText(Double.toString((answersDouble.get(1))));
-            button2.setText(Double.toString((answersDouble.get(2))));
-            button3.setText(Double.toString((answersDouble.get(3))));
+            button0.setText(String.format(java.util.Locale.US, "%.2f", answersDouble.get(0)));
+            button1.setText(String.format(java.util.Locale.US, "%.2f", answersDouble.get(1)));
+            button2.setText(String.format(java.util.Locale.US, "%.2f", answersDouble.get(2)));
+            button3.setText(String.format(java.util.Locale.US, "%.2f", answersDouble.get(3)));
         }
 
         else {
-            button0.setText(Integer.toString((answers.get(0))));
-            button1.setText(Integer.toString((answers.get(1))));
-            button2.setText(Integer.toString((answers.get(2))));
-            button3.setText(Integer.toString((answers.get(3))));
+            button0.setText(String.format(java.util.Locale.US, "%d", answers.get(0)));
+            button1.setText(String.format(java.util.Locale.US, "%d", answers.get(1)));
+            button2.setText(String.format(java.util.Locale.US, "%d", answers.get(2)));
+            button3.setText(String.format(java.util.Locale.US, "%d", answers.get(3)));
         }
 
     }
@@ -237,11 +233,11 @@ public class MainActivity extends AppCompatActivity {
         if(gameState == 1) {
             if(view.getTag().toString().equals( Integer.toString(locationOfCorrectAnswer) )) {
                 score++;
-                resultTextView.setText("Correct!");
+                resultTextView.setText(getString(R.string.resultSetTextCorrect));
             }
 
             else {
-                resultTextView.setText("Wrong!");
+                resultTextView.setText(getString(R.string.resultSetTextWrong));
             }
 
             numberOfQuestions++;
@@ -279,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
 
         startButton = (Button)findViewById(R.id.startButton);
         pointsTextView = (TextView)findViewById(R.id.pointsTextView);
-        sumTextView = (TextView)findViewById(R.id.sumTextView);
+        questionTextView = (TextView)findViewById(R.id.questionTextView);
         resultTextView = (TextView)findViewById(R.id.resultTextView);
         timerTextView = (TextView)findViewById(R.id.timerTextView);
 

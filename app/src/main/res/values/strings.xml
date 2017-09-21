@@ -1,3 +1,45 @@
 <resources>
     <string name="app_name">Brain Trainer</string>
+
+    <!--
+    Names for Button
+    -->
+    <string name="startButton">Start</string>
+    <string name="optionsButton">Options</string>
+    <string name="playAgainButton">Play Again</string>
+    <string name="restButton">Reset</string>
+    <string name="stopButton">Stop</string>
+    <string name="saveUserSettingsButton">Save Settings</string>
+
+    <string name="button0">0</string>
+    <string name="button1">1</string>
+    <string name="button2">2</string>
+    <string name="button3">3</string>
+
+    <!--
+    Names for CheckBox
+    -->
+    <string name="checkBoxAddition">Addition</string>
+    <string name="checkBoxSubtraction">Subtraction</string>
+    <string name="checkBoxMultiplication">Multiplication</string>
+    <string name="checkBoxDivision">Division</string>
+
+    <!--
+    Names for TextView
+    -->
+    <string name="pointsTextView">0/0</string>
+    <string name="timerTextView">30s</string>
+    <string name="questionTextView">1+2</string>
+    <string name="optionsQuestionTextView">Which Questions\n Would You Like?</string>
+
+    <!--
+    Names of string variables
+    -->
+    <string name="resultSetTextCorrect">Correct</string>
+    <string name="resultSetTextWrong">Wrong</string>
+    <string name="timerSetText">0s</string>
+    <string name="s">s</string>
+
+
+
 </resources>
