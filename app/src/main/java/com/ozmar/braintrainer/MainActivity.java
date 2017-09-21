@@ -7,6 +7,7 @@ import android.os.CountDownTimer;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -21,22 +22,30 @@ public class MainActivity extends AppCompatActivity {
 
     // TODO:
 
-    // Have a stop button when user is playing to stop game
-    // Maybe a resume button
-    // Rename stop button to pause button
-    // If used a reset button will be needed
-    // Or can use playAgain button
+    // How to improve in no specific order
+        // 1) When getting sharedPreferences again, check if any changes were made and only update the changes
+            // Would have to remove availableQuestions.clear() from onPause() since data might be the same
 
-    // Maybe add reset button or modify playAgainButton
-    // Allows user to play again immediately if the feel they are doing bad
-    // Eliminates 1 button click from stop to play again button
+        // 2) Have a high score display at the end of a game
+            // Possibly for each combination of questions
+            // Switch to SQLite to make it easier
 
-    // Show high score at the end for each of the possibilities
-    // Maybe just for the major ones, all options is a lot
+        // 3) Option to have decimal operations for addition, subtraction, and multiplication
+            // Option to have decimal operations round to the nearest int
 
-    // Maybe
-    // Have option for rounding
-    // Have option for decimal multiplication
+        // 4) Improve UI, change colors, placement of buttons, add icons
+
+        // 5) If released
+            // Create different layouts for screen sizes
+
+        // 6) Display time in seconds, minutes, hours, days depending on user input
+
+        // 7) Make random answers be closer to each other so that some of the answers aren't glaringly obvious
+
+        // 8) Take a closer look at fresh installs
+
+        // Remove user errors/tampering
+            // i.e user does not click any CheckBoxes
 
     Button startButton, playAgainButton, optionsButton, stopButton;
     Button button0, button1, button2, button3;
@@ -50,20 +59,20 @@ public class MainActivity extends AppCompatActivity {
     CountDownTimer myCountDownTimer;
 
     String[] mathSymbols = new String[]{"Addition", "Subtraction", "Multiplication", "Division"};
+    String userTimerChoice;
 
     Random rand = new Random();
 
-    int seconds = 7100;
     int locationOfCorrectAnswer;
     int score = 0;
     int numberOfQuestions = 0;
     int gameState = 0;  // 0 for not currently running, 1 for running
     int randNum = 31;
 
-    // Timer
-    // OnFinish: Shows playAgainButton and score, sets gameState to 0
+    // Timer, shows buttons for user and score when finished
     public void timer() {
-        myCountDownTimer = new CountDownTimer(seconds, 1000) {
+        long time = (Long.parseLong(userTimerChoice) * 1000) + 100;
+        myCountDownTimer = new CountDownTimer(time, 1000) {
 
             @Override
             public void onTick(long millisecondsUntilFinished) {
@@ -253,17 +262,27 @@ public class MainActivity extends AppCompatActivity {
     } // options() end
 
     // Put user settings into an array to use for generating random questions
+    // User timer setting is stored in a separate string
     public void getUserSettings() {
         SharedPreferences settings = getSharedPreferences("User Settings", Context.MODE_PRIVATE);
         String flagValue;
 
-        for (String mathSymbol : mathSymbols) {
-            flagValue = settings.getString(mathSymbol, "1");
+        userTimerChoice = settings.getString("Timer", "10");
+
+        for(int i = 0; i < mathSymbols.length; i++){
+            if(i == 0){     // Guarantee at least addition is checked at the start
+                flagValue = settings.getString(mathSymbols[i], "1");
+            }
+
+            else {
+                flagValue = settings.getString(mathSymbols[i], "0");
+            }
 
             if (flagValue.equals("1")) {
-                availableQuestions.add(mathSymbol);
+                availableQuestions.add(mathSymbols[i]);
             }
         }
+
     } // getUserSettings() end
 
     @Override

@@ -32,6 +32,8 @@
     <string name="questionTextView">1+2</string>
     <string name="optionsQuestionTextView">Which Questions\n Would You Like?</string>
 
+    <string name="timerPlainText">Choose Time In Secconds</string>
+
     <!--
     Names of string variables
     -->

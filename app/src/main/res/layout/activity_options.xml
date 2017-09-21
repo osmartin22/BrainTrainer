@@ -33,7 +33,8 @@
         app:layout_constraintRight_toRightOf="parent"
         android:onClick="saveUserSettings"
         android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/grid" />
+        app:layout_constraintTop_toBottomOf="@+id/grid"
+        android:id="@+id/button4" />
 
     <GridLayout
         android:layout_width="wrap_content"
@@ -99,5 +100,24 @@
             tools:layout_editor_absoluteY="117dp" />
 
     </GridLayout>
+
+    <EditText
+        android:id="@+id/timerEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/timerPlainText"
+        android:textColorHint="@android:color/darker_gray"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/button4"
+        android:layout_marginRight="32dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="32dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.512" />
 
 </android.support.constraint.ConstraintLayout>
